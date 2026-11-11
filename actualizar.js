@@ -13,7 +13,7 @@ const path = require('path');
 const BASE = 'https://opendata.aemet.es/opendata/api';
 const CLAVE = process.env.AEMET_API_KEY;
 const URL_ANTERIOR = process.env.URL_ANTERIOR; // dirección del archivo publicado la vez anterior
-const PAUSA_MS = Number(process.env.PAUSA_MS || 3000);          // AEMET permite unas 40 consultas por minuto; cada municipio son 2
+const PAUSA_MS = Number(process.env.PAUSA_MS || 4000);          // 4 s: AEMET permite unas 40 consultas por minuto y cada municipio son 2 (con 3 s pedía esperar a menudo)
 const HORAS_MAX_ANTERIOR = 12;  // una previsión antigua solo se reutiliza si tiene menos de esto
 const MAX_FALLOS = 20;          // si fallan más municipios, no se publica (queda el archivo anterior)
 
