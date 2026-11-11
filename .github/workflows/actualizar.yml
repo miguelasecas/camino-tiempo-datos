@@ -1,3 +1,0 @@
-# Tarea programada de GitHub: cada hora descarga la previsión de AEMET y la publica en la web.
-# También se puede lanzar a mano desde la pestaña "Actions" (botón "Run workflow").
-name: Actualizar previsiones
