@@ -1,0 +1,61 @@
+# Tarea programada de GitHub: cada hora descarga la previsión de AEMET y la publica en la web.
+# También se puede lanzar a mano desde la pestaña "Actions" (botón "Run workflow").
+name: Actualizar previsiones
+
+on:
+  schedule:
+    - cron: '17 * * * *'   # cada hora, en el minuto 17 (hora UTC)
+  workflow_dispatch:        # permite lanzarla a mano
+
+permissions:
+  contents: write   # para guardar una vez al día la fecha de la última ejecución
+  pages: write      # para publicar el archivo en la web (GitHub Pages)
+  id-token: write   # lo pide GitHub Pages para comprobar que la publicación es nuestra
+
+concurrency:
+  group: previsiones
+  cancel-in-progress: false   # si una ejecución tarda, la siguiente espera en vez de pisarla
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: github-pages
+      url: ${{ steps.publicar.outputs.page_url }}
+    steps:
+      - name: Coger los archivos del repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Descargar de AEMET y preparar el archivo
+        env:
+          AEMET_API_KEY: ${{ secrets.AEMET_API_KEY }}
+          URL_ANTERIOR: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/previsiones.json
+        run: node actualizar.js
+
+      - name: Preparar la publicación
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: publicar
+
+      - name: Publicar en la web
+        id: publicar
+        uses: actions/deploy-pages@v4
+
+      # GitHub pausa las tareas programadas si un repositorio público pasa 60 días sin cambios.
+      # Para evitarlo, una vez al día (a las 3 UTC) se guarda un archivo pequeño con la fecha.
+      - name: Señal de vida diaria
+        run: |
+          if [ "$(date -u +%H)" = "03" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            date -u +"%Y-%m-%d %H:%M UTC" > ultima-ejecucion.txt
+            git config user.name "robot-previsiones"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add ultima-ejecucion.txt
+            git commit -m "Señal de vida: $(date -u +%Y-%m-%d)" || true
+            git push || true
+          fi
