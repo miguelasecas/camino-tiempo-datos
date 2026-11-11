@@ -1,0 +1,520 @@
+{
+ "camino": "frances",
+ "municipios": [
+  {
+   "codigo": "31211",
+   "municipio": "Orreaga/Roncesvalles",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31058",
+   "municipio": "Auritz/Burguete",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31092",
+   "municipio": "Erro",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31098",
+   "municipio": "Esteribar",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31258",
+   "municipio": "Villava/Atarrabia",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31060",
+   "municipio": "Burlada/Burlata",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31201",
+   "municipio": "Pamplona/Iruña",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31076",
+   "municipio": "Cizur",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31109",
+   "municipio": "Galar",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31246",
+   "municipio": "Uterga",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31180",
+   "municipio": "Muruzábal",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31183",
+   "municipio": "Obanos",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31206",
+   "municipio": "Puente la Reina/Gares",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31161",
+   "municipio": "Mañeru",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31074",
+   "municipio": "Cirauqui/Zirauki",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31260",
+   "municipio": "Valle de Yerri/Deierri",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31257",
+   "municipio": "Villatuerta",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31097",
+   "municipio": "Estella-Lizarra",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31041",
+   "municipio": "Ayegui/Aiegi",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31125",
+   "municipio": "Igúzquiza",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31255",
+   "municipio": "Villamayor de Monjardín",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31029",
+   "municipio": "Los Arcos",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31219",
+   "municipio": "Sansol",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31231",
+   "municipio": "Torres del Río",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "31251",
+   "municipio": "Viana",
+   "provincia": "Navarra"
+  },
+  {
+   "codigo": "26089",
+   "municipio": "Logroño",
+   "provincia": "La Rioja"
+  },
+  {
+   "codigo": "26105",
+   "municipio": "Navarrete",
+   "provincia": "La Rioja"
+  },
+  {
+   "codigo": "26163",
+   "municipio": "Ventosa",
+   "provincia": "La Rioja"
+  },
+  {
+   "codigo": "26010",
+   "municipio": "Alesón",
+   "provincia": "La Rioja"
+  },
+  {
+   "codigo": "26102",
+   "municipio": "Nájera",
+   "provincia": "La Rioja"
+  },
+  {
+   "codigo": "26022",
+   "municipio": "Azofra",
+   "provincia": "La Rioja"
+  },
+  {
+   "codigo": "26050",
+   "municipio": "Cirueña",
+   "provincia": "La Rioja"
+  },
+  {
+   "codigo": "26138",
+   "municipio": "Santo Domingo de la Calzada",
+   "provincia": "La Rioja"
+  },
+  {
+   "codigo": "26069",
+   "municipio": "Grañón",
+   "provincia": "La Rioja"
+  },
+  {
+   "codigo": "09307",
+   "municipio": "Redecilla del Camino",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09082",
+   "municipio": "Castildelgado",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09424",
+   "municipio": "Viloria de Rioja",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09130",
+   "municipio": "Fresneña",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09048",
+   "municipio": "Belorado",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09392",
+   "municipio": "Tosantos",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09445",
+   "municipio": "Villambistia",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09123",
+   "municipio": "Espinosa del Camino",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09431",
+   "municipio": "Villafranca Montes de Oca",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09044",
+   "municipio": "Barrios de Colina",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09026",
+   "municipio": "Arlanzón",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09029",
+   "municipio": "Atapuerca",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09075",
+   "municipio": "Cardeñuela Riopico",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09241",
+   "municipio": "Orbaneja Riopico",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09059",
+   "municipio": "Burgos",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09377",
+   "municipio": "Tardajos",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09304",
+   "municipio": "Rabé de las Calzadas",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09167",
+   "municipio": "Hornillos del Camino",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09180",
+   "municipio": "Iglesias",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09159",
+   "municipio": "Hontanas",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "09091",
+   "municipio": "Castrojeriz",
+   "provincia": "Burgos"
+  },
+  {
+   "codigo": "34089",
+   "municipio": "Itero de la Vega",
+   "provincia": "Palencia"
+  },
+  {
+   "codigo": "34034",
+   "municipio": "Boadilla del Camino",
+   "provincia": "Palencia"
+  },
+  {
+   "codigo": "34074",
+   "municipio": "Frómista",
+   "provincia": "Palencia"
+  },
+  {
+   "codigo": "34132",
+   "municipio": "Población de Campos",
+   "provincia": "Palencia"
+  },
+  {
+   "codigo": "34152",
+   "municipio": "Revenga de Campos",
+   "provincia": "Palencia"
+  },
+  {
+   "codigo": "34230",
+   "municipio": "Villarmentero de Campos",
+   "provincia": "Palencia"
+  },
+  {
+   "codigo": "34215",
+   "municipio": "Villalcázar de Sirga",
+   "provincia": "Palencia"
+  },
+  {
+   "codigo": "34047",
+   "municipio": "Carrión de los Condes",
+   "provincia": "Palencia"
+  },
+  {
+   "codigo": "34055",
+   "municipio": "Cervatos de la Cueza",
+   "provincia": "Palencia"
+  },
+  {
+   "codigo": "34094",
+   "municipio": "Ledigos",
+   "provincia": "Palencia"
+  },
+  {
+   "codigo": "34109",
+   "municipio": "Moratinos",
+   "provincia": "Palencia"
+  },
+  {
+   "codigo": "24139",
+   "municipio": "Sahagún",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24031",
+   "municipio": "Calzada del Coto",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24018",
+   "municipio": "Bercianos del Real Camino",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24024",
+   "municipio": "El Burgo Ranero",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24160",
+   "municipio": "Santas Martas",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24094",
+   "municipio": "Mansilla de las Mulas",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24225",
+   "municipio": "Villasabariego",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24227",
+   "municipio": "Villaturiel",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24175",
+   "municipio": "Valdefresno",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24089",
+   "municipio": "León",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24142",
+   "municipio": "San Andrés del Rabanedo",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24189",
+   "municipio": "Valverde de la Virgen",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24065",
+   "municipio": "Chozas de Abajo",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24159",
+   "municipio": "Santa Marina del Rey",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24082",
+   "municipio": "Hospital de Órbigo",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24224",
+   "municipio": "Villares de Órbigo",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24148",
+   "municipio": "San Justo de la Vega",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24008",
+   "municipio": "Astorga",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24152",
+   "municipio": "Santa Colomba de Somoza",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24100",
+   "municipio": "Molinaseca",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24115",
+   "municipio": "Ponferrada",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24034",
+   "municipio": "Camponaraya",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24030",
+   "municipio": "Cacabelos",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24209",
+   "municipio": "Villafranca del Bierzo",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24171",
+   "municipio": "Trabadelo",
+   "provincia": "León"
+  },
+  {
+   "codigo": "24198",
+   "municipio": "Vega de Valcarce",
+   "provincia": "León"
+  },
+  {
+   "codigo": "27045",
+   "municipio": "Pedrafita do Cebreiro",
+   "provincia": "Lugo"
+  },
+  {
+   "codigo": "27062",
+   "municipio": "Triacastela",
+   "provincia": "Lugo"
+  },
+  {
+   "codigo": "27057",
+   "municipio": "Sarria",
+   "provincia": "Lugo"
+  },
+  {
+   "codigo": "27042",
+   "municipio": "Paradela",
+   "provincia": "Lugo"
+  },
+  {
+   "codigo": "27049",
+   "municipio": "Portomarín",
+   "provincia": "Lugo"
+  },
+  {
+   "codigo": "27032",
+   "municipio": "Monterroso",
+   "provincia": "Lugo"
+  },
+  {
+   "codigo": "27040",
+   "municipio": "Palas de Rei",
+   "provincia": "Lugo"
+  },
+  {
+   "codigo": "15046",
+   "municipio": "Melide",
+   "provincia": "A Coruña"
+  },
+  {
+   "codigo": "15006",
+   "municipio": "Arzúa",
+   "provincia": "A Coruña"
+  },
+  {
+   "codigo": "15066",
+   "municipio": "O Pino",
+   "provincia": "A Coruña"
+  },
+  {
+   "codigo": "15078",
+   "municipio": "Santiago de Compostela",
+   "provincia": "A Coruña"
+  }
+ ]
+}
