@@ -1,5 +1,6 @@
 # Tarea programada de GitHub: cada hora descarga la previsión de AEMET y la publica en la web.
 # También se puede lanzar a mano desde la pestaña "Actions" (botón "Run workflow").
+# 11 nov 2026: piezas de GitHub actualizadas (checkout v5, setup-node v5, upload-pages-artifact v5, deploy-pages v5).
 name: Actualizar previsiones
 
 on:
@@ -25,10 +26,10 @@ jobs:
       url: ${{ steps.publicar.outputs.page_url }}
     steps:
       - name: Coger los archivos del repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Preparar Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
 
@@ -39,13 +40,13 @@ jobs:
         run: node actualizar.js
 
       - name: Preparar la publicación
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: publicar
 
       - name: Publicar en la web
         id: publicar
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
       # GitHub pausa las tareas programadas si un repositorio público pasa 60 días sin cambios.
       # Para evitarlo, una vez al día (a las 3 UTC) se guarda un archivo pequeño con la fecha.
