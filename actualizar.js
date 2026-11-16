@@ -6,6 +6,8 @@
 // La clave de AEMET la da GitHub como variable secreta AEMET_API_KEY: no está en este archivo
 // y este programa nunca la escribe en pantalla ni en ningún archivo.
 // Si un municipio falla, se reutiliza su previsión anterior (si tiene menos de 12 horas).
+// Además descarga los AVISOS de AEMET (Meteoalerta, públicos y sin clave) y guarda los que
+// afectan a algún punto del Camino (puntos.json), con su nivel, fenómeno, horario y zona.
 
 const fs = require('fs');
 const path = require('path');
@@ -78,6 +80,76 @@ function resumir(prev) {
   };
 }
 
+// ---- Avisos de AEMET (amarillo / naranja / rojo) ----
+const RSS_AVISOS = 'https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAE_wah_RSS.xml';
+
+// Primer valor de una etiqueta XML dentro de un texto (los avisos son XML sencillos).
+function etiqueta(xml, nombre) {
+  const m = xml.match(new RegExp(`<${nombre}>([\\s\\S]*?)</${nombre}>`));
+  return m ? m[1].trim() : null;
+}
+// Valor de un <parameter>/<eventCode>/<geocode> por su valueName.
+function valorDe(xml, valueName) {
+  const re = new RegExp(`<valueName>${valueName}</valueName>\\s*<value>([\\s\\S]*?)</value>`);
+  const m = xml.match(re);
+  return m ? m[1].trim() : null;
+}
+// ¿Está el punto (lat, lon) dentro del polígono [[lat, lon], ...]? (método del rayo)
+function dentro(lat, lon, poligono) {
+  let si = false;
+  for (let i = 0, j = poligono.length - 1; i < poligono.length; j = i++) {
+    const [ai, oi] = poligono[i];
+    const [aj, oj] = poligono[j];
+    if ((oi > lon) !== (oj > lon) && lat < ((aj - ai) * (lon - oi)) / (oj - oi) + ai) si = !si;
+  }
+  return si;
+}
+
+// Lee un aviso CAP (bloque en español) y devuelve sus datos, o null si no se entiende.
+function leerAviso(xml, puntos) {
+  const info = (xml.match(/<info>[\s\S]*?<\/info>/) || [])[0];
+  if (!info) return null;
+  const nivel = valorDe(info, 'AEMET-Meteoalerta nivel');           // amarillo | naranja | rojo
+  const fenomeno = (valorDe(info, 'AEMET-Meteoalerta fenomeno') || '').split(';'); // ["PR", "Lluvias"]
+  const poligonoTxt = etiqueta(info, 'polygon');
+  if (!nivel || !poligonoTxt || !['amarillo', 'naranja', 'rojo'].includes(nivel)) return null;
+  const poligono = poligonoTxt.split(/\s+/).map((par) => par.split(',').map(Number));
+  const afectados = puntos.filter((p) => dentro(p.lat, p.lon, poligono)).map((p) => p.orden);
+  if (afectados.length === 0) return null;
+  return {
+    nivel,
+    fenomeno: fenomeno[0] || '',
+    fenomenoTexto: fenomeno[1] || '',
+    zona: etiqueta(info, 'areaDesc'),
+    inicio: etiqueta(info, 'onset'),
+    fin: etiqueta(info, 'expires'),
+    detalle: (valorDe(info, 'AEMET-Meteoalerta parametro') || '').split(';').slice(1).join(': '),
+    puntos: afectados,
+  };
+}
+
+async function descargarAvisos(puntos) {
+  const rss = await (await fetch(RSS_AVISOS)).text();
+  const enlaces = [...rss.matchAll(/<link>(https?:[^<]+\.xml)<\/link>/g)].map((m) => m[1]);
+  const avisos = [];
+  const vistos = new Set();
+  for (const url of enlaces) {
+    try {
+      const r = await fetch(url);
+      const xml = new TextDecoder('utf-8').decode(new Uint8Array(await r.arrayBuffer()));
+      const aviso = leerAviso(xml, puntos);
+      if (!aviso) continue;
+      const clave = `${aviso.zona}|${aviso.fenomeno}|${aviso.inicio}|${aviso.nivel}`;
+      if (!vistos.has(clave)) { vistos.add(clave); avisos.push(aviso); }
+    } catch (e) {
+      console.log(`  aviso no leído (${url.split('/').pop()}): ${e.message}`);
+    }
+    await esperar(200);
+  }
+  console.log(`Avisos: ${enlaces.length} en España, ${avisos.length} afectan al Camino.`);
+  return avisos;
+}
+
 async function leerAnterior() {
   if (!URL_ANTERIOR) return null;
   try {
@@ -115,10 +187,21 @@ async function main() {
     throw new Error(`Demasiados fallos (${fallos.length}): no publico nada y se queda el archivo anterior`);
   }
 
+  // Avisos: si falla su descarga, no se pierde la previsión (se publican sin avisos nuevos).
+  let avisos = [];
+  try {
+    const { puntos } = JSON.parse(fs.readFileSync(path.join(__dirname, 'puntos.json'), 'utf8'));
+    avisos = await descargarAvisos(puntos);
+  } catch (e) {
+    console.log('Avisos: no se pudieron descargar (' + e.message + ')');
+    avisos = anterior?.avisos ?? [];
+  }
+
   const salida = {
     actualizado: new Date().toISOString(),
     fuente: 'AEMET (Agencia Estatal de Meteorología)',
     municipios: resultado,
+    avisos,
   };
   const carpeta = path.join(__dirname, 'publicar');
   fs.mkdirSync(carpeta, { recursive: true });
