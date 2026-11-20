@@ -206,6 +206,9 @@ async function main() {
   const carpeta = path.join(__dirname, 'publicar');
   fs.mkdirSync(carpeta, { recursive: true });
   fs.writeFileSync(path.join(carpeta, 'previsiones.json'), JSON.stringify(salida));
+  // Política de privacidad de la app (la pide Google Play): se publica tal cual junto a las previsiones.
+  const politica = path.join(__dirname, 'privacidad.html');
+  if (fs.existsSync(politica)) fs.copyFileSync(politica, path.join(carpeta, 'privacidad.html'));
   fs.writeFileSync(path.join(carpeta, 'index.html'),
     '<!doctype html><meta charset="utf-8"><title>Previsiones Camino</title>' +
     `<p>Previsión del tiempo para la app del Camino. Fuente: AEMET. Actualizado: ${salida.actualizado}</p>`);
