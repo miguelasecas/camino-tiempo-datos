@@ -1,6 +1,9 @@
 # Tarea programada de GitHub: cada hora descarga la previsión de AEMET y la publica en la web.
 # También se puede lanzar a mano desde la pestaña "Actions" (botón "Run workflow").
 # 11 nov 2026: piezas de GitHub actualizadas (checkout v5, setup-node v5, upload-pages-artifact v5, deploy-pages v5).
+# 25 nov 2026: la publicación va en un TRABAJO APARTE ("publicar"), que empieza cuando termina "actualizar".
+#   Antes iban en el mismo trabajo y, a veces, GitHub no encontraba el paquete recién subido
+#   ("No artifacts named github-pages"). Es un fallo conocido de GitHub (actions/deploy-pages#451).
 name: Actualizar previsiones
 
 on:
@@ -18,12 +21,10 @@ concurrency:
   cancel-in-progress: false   # si una ejecución tarda, la siguiente espera en vez de pisarla
 
 jobs:
+  # 1) Descarga de AEMET y prepara el paquete para la web
   actualizar:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    environment:
-      name: github-pages
-      url: ${{ steps.publicar.outputs.page_url }}
     steps:
       - name: Coger los archivos del repositorio
         uses: actions/checkout@v5
@@ -44,10 +45,6 @@ jobs:
         with:
           path: publicar
 
-      - name: Publicar en la web
-        id: publicar
-        uses: actions/deploy-pages@v5
-
       # GitHub pausa las tareas programadas si un repositorio público pasa 60 días sin cambios.
       # Para evitarlo, una vez al día (a las 3 UTC) se guarda un archivo pequeño con la fecha.
       - name: Señal de vida diaria
@@ -60,3 +57,16 @@ jobs:
             git commit -m "Señal de vida: $(date -u +%Y-%m-%d)" || true
             git push || true
           fi
+
+  # 2) Publica en la web lo que ha preparado el trabajo anterior
+  publicar:
+    needs: actualizar
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.publicar.outputs.page_url }}
+    steps:
+      - name: Publicar en la web
+        id: publicar
+        uses: actions/deploy-pages@v5
