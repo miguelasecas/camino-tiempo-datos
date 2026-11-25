@@ -1,5 +1,4 @@
 {
- "camino": "frances",
  "municipios": [
   {
    "codigo": "31211",
@@ -514,6 +513,41 @@
   {
    "codigo": "15078",
    "municipio": "Santiago de Compostela",
+   "provincia": "A Coruña"
+  },
+  {
+   "codigo": "15002",
+   "municipio": "Ames",
+   "provincia": "A Coruña"
+  },
+  {
+   "codigo": "15056",
+   "municipio": "Negreira",
+   "provincia": "A Coruña"
+  },
+  {
+   "codigo": "15045",
+   "municipio": "Mazaricos",
+   "provincia": "A Coruña"
+  },
+  {
+   "codigo": "15034",
+   "municipio": "Dumbría",
+   "provincia": "A Coruña"
+  },
+  {
+   "codigo": "15023",
+   "municipio": "Cee",
+   "provincia": "A Coruña"
+  },
+  {
+   "codigo": "15028",
+   "municipio": "Corcubión",
+   "provincia": "A Coruña"
+  },
+  {
+   "codigo": "15037",
+   "municipio": "Fisterra",
    "provincia": "A Coruña"
   }
  ]
